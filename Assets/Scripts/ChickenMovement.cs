@@ -1,0 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ChickenMovement : MonoBehaviour
+{
+    public float jumpDuration = 0.2f;
+    public float jumpHeight = 0.5f;
+    private bool isJumping = false;
+
+    private void Start()
+    {
+        SnapToGrid();
+    }
+
+    public void Jump(Vector3 direction)
+    {
+        if (isJumping) return;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + direction;
+
+        endPos = new Vector3(Mathf.Round(endPos.x), endPos.y, Mathf.Round(endPos.z));
+
+        StartCoroutine(JumpRoutine(startPos, endPos));
+    }
+
+    private IEnumerator JumpRoutine(Vector3 start, Vector3 end)
+    {
+        isJumping = true;
+        float elapsed = 0f;
+
+        while (elapsed < jumpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / jumpDuration);
+
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y += Mathf.Sin(t * Mathf.PI) * jumpHeight;
+
+            transform.position = pos;
+            yield return null;
+        }
+
+        transform.position = end;
+        SnapToGrid();
+        isJumping = false;
+    }
+
+    private void SnapToGrid()
+    {
+        Vector3 p = transform.position;
+        transform.position = new Vector3(Mathf.Round(p.x), p.y, Mathf.Round(p.z));
+    }
+}
