@@ -8,6 +8,9 @@ public class ChickenMovement : MonoBehaviour
     public float jumpHeight = 0.5f;
     private bool isJumping = false;
 
+    [SerializeField]
+    GameObject _chicken;
+
     private void Start()
     {
         SnapToGrid();
@@ -51,5 +54,16 @@ public class ChickenMovement : MonoBehaviour
     {
         Vector3 p = transform.position;
         transform.position = new Vector3(Mathf.Round(p.x), p.y, Mathf.Round(p.z));
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "obstacle")
+        {
+            Debug.Log("collided with lambda");
+            // game ends
+            Destroy(_chicken.gameObject);
+            Time.timeScale = 0;
+        }
     }
 }
