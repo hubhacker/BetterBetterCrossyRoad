@@ -22,22 +22,22 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                GetComponent<ChickenMovement>().Jump(-transform.right);
+                GetComponent<ChickenMovement>().Jump(transform.forward);
                 isGrounded = false;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                GetComponent<ChickenMovement>().Jump(transform.right);
+                GetComponent<ChickenMovement>().Jump(-transform.forward);
                 isGrounded = false;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                GetComponent<ChickenMovement>().Jump(-transform.forward);
+                GetComponent<ChickenMovement>().Jump(-transform.right);
                 isGrounded = false;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                GetComponent<ChickenMovement>().Jump(transform.forward);
+                GetComponent<ChickenMovement>().Jump(transform.right);
                 isGrounded = false;
             }   
         }
