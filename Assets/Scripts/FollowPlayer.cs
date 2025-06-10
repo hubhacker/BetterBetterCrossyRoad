@@ -17,7 +17,7 @@ public class FollowPlayer : MonoBehaviour
     void LateUpdate()
     {
         // Follow player only in x and z direction
-        Vector3 desiredPosition = new Vector3(player.position.x, initialY, player.position.z - 3); // + offset;
+        Vector3 desiredPosition = new Vector3(player.position.x + 1, initialY, player.position.z - 3); // + offset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
     }
 }

@@ -20,6 +20,8 @@ public class ChickenMovement : MonoBehaviour
     {
         if (isJumping) return;
 
+        if (direction != Vector3.zero) transform.rotation = Quaternion.LookRotation(direction);
+
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + direction;
 
