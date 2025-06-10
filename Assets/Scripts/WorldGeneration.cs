@@ -10,6 +10,7 @@ public class WorldGenerator : MonoBehaviour
     public Transform chicken;         // Assign the Chicken GameObject
     public GameObject log;
     public float spawnOffset = 15f;   // How far ahead of the chicken to spawn tiles
+    public int stripsSpawned = 0;
     // public float treeSpacingRadius = 1.5f; // Minimum spacing between trees
     
     private bool lastWater = false;
@@ -50,6 +51,14 @@ public class WorldGenerator : MonoBehaviour
             // actually instantiate strip
             Vector3 spawnPosition = new Vector3(0, 0, currentZ + spawnOffset);
             Instantiate(prefab, spawnPosition, Quaternion.identity);
+            stripsSpawned++;
+            if (stripsSpawned > 20)
+            {
+                // increase speed of lambdas;
+                FindObjectOfType<lambdaSpawner>()?.IncreaseLambdaSpeed(1f);
+                stripsSpawned = 0;
+            }
+
             if (prefab.name == "RoadStrip")
             {
                 lambdaSpawner lambdaSpawner = FindObjectOfType<lambdaSpawner>();
