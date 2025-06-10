@@ -11,6 +11,32 @@ public class lambdaSpawner : MonoBehaviour
     public int[] zSpawnPositions = {1, 2, 3, 7, 10, 13, 14};
     public List<int> zSpawnPositionsRight = new List<int>();
     public List<int> zSpawnPositionsLeft = new List<int>();
+    public float minSpeed = 1f;
+    public float maxSpeed = 4f;
+
+    public void IncreaseLambdaSpeed(float increment = 0.5f)
+    {
+        minSpeed += increment;
+        maxSpeed += increment;
+        Debug.Log($"Lambda speed increased: {minSpeed} - {maxSpeed}");
+    }
+
+    private GameObject SpawnLambda(GameObject prefab, Vector3 position)
+    {
+        GameObject lambda = Instantiate(prefab, position, Quaternion.identity);
+        
+        // Set random speed inside the prefab’s movement script
+        if (lambda.TryGetComponent<leftLambdaMovement>(out var left))
+        {
+            left.speed = Random.Range(minSpeed, maxSpeed);
+        }
+        else if (lambda.TryGetComponent<rightLambdaMovement>(out var right))
+        {
+            right.speed = Random.Range(minSpeed, maxSpeed);
+        }
+
+        return lambda;
+    }
 
 
     private void Start()
@@ -18,15 +44,18 @@ public class lambdaSpawner : MonoBehaviour
         for(int i = 0; i < zSpawnPositions.Length; i++){
             Debug.Log("zSpawnPositions: " + zSpawnPositions[i]);
             int randomIndex = Random.Range(0, 2);
-            if(randomIndex == 0){
-                zSpawnPositionsLeft.Add(zSpawnPositions[i]);
-                Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositions[i]);
-                Destroy(Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity), 15f);
+            int z = zSpawnPositions[i];
+            Vector3 spawnPos = (randomIndex == 0) ? new Vector3(-10, 1, z) : new Vector3(10, 1, z);
+
+            if (randomIndex == 0)
+            {
+                zSpawnPositionsLeft.Add(z);
+                Destroy(SpawnLambda(leftLambdaPrefab, spawnPos), 15f);
             }
-            else{
-                zSpawnPositionsRight.Add(zSpawnPositions[i]);
-                Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositions[i]);
-                Destroy(Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity), 15f);
+            else
+            {
+                zSpawnPositionsRight.Add(z);
+                Destroy(SpawnLambda(rightLambdaPrefab, spawnPos), 15f);
             }
         }
         StartCoroutine(SpawnLambdas());
@@ -50,6 +79,7 @@ public class lambdaSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
+
     public void addZSpawnPosition(int zPosition){
         int randomIndex = Random.Range(0, 2);
         if(randomIndex == 0){

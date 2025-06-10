@@ -8,7 +8,7 @@ public class rightLambdaMovement : MonoBehaviour
     public Vector3 moveDirection = Vector3.left;
 
     void Start(){
-        speed = Random.Range(1f, 4f);
+        speed = Random.Range(1f, 4f); // fallback
     }
     // Update is called once per frame
     void Update()
