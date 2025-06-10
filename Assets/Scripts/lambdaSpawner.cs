@@ -45,7 +45,7 @@ public class lambdaSpawner : MonoBehaviour
             Debug.Log("zSpawnPositions: " + zSpawnPositions[i]);
             int randomIndex = Random.Range(0, 2);
             int z = zSpawnPositions[i];
-            Vector3 spawnPos = (randomIndex == 0) ? new Vector3(-10, 1, z) : new Vector3(10, 1, z);
+            Vector3 spawnPos = (randomIndex == 0) ? new Vector3(-20, 1, z) : new Vector3(20, 1, z);
 
             if (randomIndex == 0)
             {
@@ -67,11 +67,11 @@ public class lambdaSpawner : MonoBehaviour
         {
             int randomIndex = Random.Range(0, 2);
             if(randomIndex == 0){
-                Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositionsLeft[Random.Range(0, zSpawnPositionsLeft.Count)]);
+                Vector3 spawnPositionLeft = new Vector3(-20, 1, zSpawnPositionsLeft[Random.Range(0, zSpawnPositionsLeft.Count)]);
                 Destroy(Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity), 15f);
             }
             else{
-                Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositionsRight[Random.Range(0, zSpawnPositionsRight.Count)]);
+                Vector3 spawnPositionRight = new Vector3(20, 1, zSpawnPositionsRight[Random.Range(0, zSpawnPositionsRight.Count)]);
                 Destroy(Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity), 15f);
             }
 
@@ -84,12 +84,12 @@ public class lambdaSpawner : MonoBehaviour
         int randomIndex = Random.Range(0, 2);
         if(randomIndex == 0){
             zSpawnPositionsLeft.Add(zPosition);
-            Vector3 spawnPositionLeft = new Vector3(-10, 1, zPosition);
+            Vector3 spawnPositionLeft = new Vector3(-20, 1, zPosition);
             Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
         }
         else{
             zSpawnPositionsRight.Add(zPosition);
-            Vector3 spawnPositionRight = new Vector3(10, 1, zPosition);
+            Vector3 spawnPositionRight = new Vector3(20, 1, zPosition);
             Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
         }
     }
