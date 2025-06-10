@@ -41,6 +41,10 @@ public class WorldGenerator : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3(0, 0, currentZ + spawnOffset);
             Instantiate(prefab, spawnPosition, Quaternion.identity);
+            if(prefab.name == "RoadStrip"){
+                lambdaSpawner lambdaSpawner = FindObjectOfType<lambdaSpawner>();
+                lambdaSpawner.addZSpawnPosition(currentZ + (int)spawnOffset);
+            }
         }
     }
 }
