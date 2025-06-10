@@ -5,35 +5,29 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
 
-    public GameObject[] worldPrefabs;
-    public Transform chicken;
-    public float spawnDistance = 15f;
-    private int farthestChickenDistance = 0;
+    public GameObject[] worldPrefabs; // Assign your tile prefabs in the Inspector
+    public Transform chicken;         // Assign the Chicken GameObject
+    public float spawnOffset = 15f;   // How far ahead of the chicken to spawn tiles
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        farthestChickenDistance = (int) Mathf.Round(chicken.position.z);
-        GenerateNextTile();
-    }
+    private int lastGeneratedZ = int.MinValue;
 
     // Update is called once per frame
     void Update()
     {
-        int chickenZ = (int) Mathf.Round(chicken.position.z);;
+        // Round down the chicken's Z position to the nearest whole unit
+        int currentZ = Mathf.FloorToInt(chicken.position.z);
 
-        if (chickenZ >= farthestChickenDistance)
+        // Only generate a tile if chicken moved into a new unit
+        if (currentZ > lastGeneratedZ)
         {
-            farthestChickenDistance = chickenZ;
-            GenerateNextTile();
+            lastGeneratedZ = currentZ;
+
+            // Choose a random tile prefab
+            GameObject prefab = worldPrefabs[Random.Range(0, worldPrefabs.Length)];
+
+            // Spawn it 15 units ahead on the Z axis
+            Vector3 spawnPosition = new Vector3(0, 0, currentZ + spawnOffset);
+            Instantiate(prefab, spawnPosition, Quaternion.identity);
         }
-    }
-
-    void GenerateNextTile()
-    {
-        GameObject prefab = worldPrefabs[Random.Range(0, worldPrefabs.Length)];
-
-        Vector3 spawnPosition = new Vector3(0, 0, farthestChickenDistance + spawnDistance);
-        Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
 }
