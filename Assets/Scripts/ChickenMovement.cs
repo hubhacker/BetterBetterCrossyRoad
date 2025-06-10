@@ -7,6 +7,9 @@ public class ChickenMovement : MonoBehaviour
     public float jumpDuration = 0.2f;
     public float jumpHeight = 0.5f;
     private bool isJumping = false;
+    public int score = 0;
+    private int maxZdistance = 0;
+    public DisplayScore displayScore;
     // private bool isInWater = false;
 
     [SerializeField]
@@ -16,6 +19,7 @@ public class ChickenMovement : MonoBehaviour
     {
         SnapToGrid();
     }
+
 
     public void Jump(Vector3 direction)
     {
@@ -57,6 +61,14 @@ public class ChickenMovement : MonoBehaviour
     {
         Vector3 p = transform.position;
         transform.position = new Vector3(Mathf.Round(p.x), p.y, Mathf.Round(p.z));
+        if(Mathf.Round(p.z) > maxZdistance)
+        {
+            maxZdistance = Mathf.RoundToInt(p.z);
+            score++;
+            DisplayScore displayScore = FindObjectOfType<DisplayScore>();
+            displayScore.UpdateScore(maxZdistance);
+            Debug.Log("Score: " + score);
+        }
     }
 
     void OnTriggerEnter(Collider collider)
