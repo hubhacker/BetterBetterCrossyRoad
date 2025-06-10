@@ -14,8 +14,8 @@ public class treeSpawner : MonoBehaviour
         for (int i = 0; i < 4; i++){
             GameObject randomTree = treePrefabs[Random.Range(0, treePrefabs.Length)];
             Vector3 spawnPosition = (Random.value < 0.5f) ?
-                new Vector3(-10, 1, zSpawnPositions[i]) :
-                new Vector3(10, 1, zSpawnPositions[i]);
+                new Vector3(-10, 0, zSpawnPositions[i]) :
+                new Vector3(10, 0, zSpawnPositions[i]);
             Instantiate(randomTree, spawnPosition, Quaternion.identity);
         }
         StartCoroutine(SpawnTrees());
@@ -27,8 +27,8 @@ public class treeSpawner : MonoBehaviour
         {
             GameObject randomTree = treePrefabs[Random.Range(0, treePrefabs.Length)];
             Vector3 spawnPosition = (Random.value < 0.5f) ?
-                new Vector3(-10, 1, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]) :
-                new Vector3(10, 1, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]);
+                new Vector3(-10, 0, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]) :
+                new Vector3(10, 0, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]);
             Instantiate(randomTree, spawnPosition, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnInterval);

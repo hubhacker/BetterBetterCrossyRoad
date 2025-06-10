@@ -7,19 +7,17 @@ public class FollowPlayer : MonoBehaviour
     public float smoothSpeed = 5f;  // Smooth damping
 
     private float initialY;
-    private float initialX;
 
     void Start()
     {
-        // Store initial Y and Z position so camera doesn't follow player in those directions
+        // Store initial y position so camera doesn't follow player in those directions
         initialY = transform.position.y;
-        initialX = transform.position.x;
     }
 
     void LateUpdate()
     {
-        // Follow player only in the X direction
-        Vector3 desiredPosition = new Vector3(initialX, initialY, player.position.z - 3); // + offset;
+        // Follow player only in x and z direction
+        Vector3 desiredPosition = new Vector3(player.position.x, initialY, player.position.z - 3); // + offset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
     }
 }
