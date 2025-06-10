@@ -1989,8 +1989,9 @@ MonoBehaviour:
   worldPrefabs:
   - {fileID: 6220603668955483179, guid: 9cf584e04284246c28e3d4ae55bf2fb4, type: 3}
   - {fileID: 1601009122078648933, guid: 345747723bc0a4ad7b3038c662833550, type: 3}
+  - {fileID: 1601009122078648933, guid: ca40e76e8dce043fda5378f8ed968a4e, type: 3}
   chicken: {fileID: 621034258}
-  log: {fileID: 0}
+  log: {fileID: 1601009122078648933, guid: 38c8b6bb1f8f54026957a3c34e31553e, type: 3}
   spawnOffset: 15
   stripsSpawned: 0
 --- !u!4 &1184989477
