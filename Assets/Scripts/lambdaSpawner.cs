@@ -8,17 +8,23 @@ public class lambdaSpawner : MonoBehaviour
     public GameObject rightLambdaPrefab; 
     public float spawnInterval = 1f; // Time between spawns
 
-    public int[] zSpawnPositions = {1, 2, 4, 9};
+    public int[] zSpawnPositions = {1, 2, 3, 7, 10, 13, 14};
+    public List<int> zSpawnPositionsRight = new List<int>();
+    public List<int> zSpawnPositionsLeft = new List<int>();
+
 
     private void Start()
     {
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < zSpawnPositions.Length; i++){
+            Debug.Log("zSpawnPositions: " + zSpawnPositions[i]);
             int randomIndex = Random.Range(0, 2);
             if(randomIndex == 0){
+                zSpawnPositionsLeft.Add(zSpawnPositions[i]);
                 Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositions[i]);
                 Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
             }
             else{
+                zSpawnPositionsRight.Add(zSpawnPositions[i]);
                 Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositions[i]);
                 Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
             }
@@ -32,16 +38,29 @@ public class lambdaSpawner : MonoBehaviour
         {
             int randomIndex = Random.Range(0, 2);
             if(randomIndex == 0){
-                Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]);
+                Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositionsLeft[Random.Range(0, zSpawnPositionsLeft.Count)]);
                 Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
             }
             else{
-                Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]);
+                Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositionsRight[Random.Range(0, zSpawnPositionsRight.Count)]);
                 Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
             }
 
 
             yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+    public void addZSpawnPosition(int zPosition){
+        int randomIndex = Random.Range(0, 2);
+        if(randomIndex == 0){
+            zSpawnPositionsLeft.Add(zPosition);
+            Vector3 spawnPositionLeft = new Vector3(-10, 1, zPosition);
+            Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
+        }
+        else{
+            zSpawnPositionsRight.Add(zPosition);
+            Vector3 spawnPositionRight = new Vector3(10, 1, zPosition);
+            Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
         }
     }
 }
