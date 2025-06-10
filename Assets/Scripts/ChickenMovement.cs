@@ -7,6 +7,7 @@ public class ChickenMovement : MonoBehaviour
     public float jumpDuration = 0.2f;
     public float jumpHeight = 0.5f;
     private bool isJumping = false;
+    // private bool isInWater = false;
 
     [SerializeField]
     GameObject _chicken;
@@ -67,5 +68,13 @@ public class ChickenMovement : MonoBehaviour
             Destroy(_chicken.gameObject);
             Time.timeScale = 0;
         }
+
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Water"))
+           {
+               Debug.Log("touched water layer - chicken drowns. game over");
+               // game ends
+                Destroy(_chicken.gameObject);
+                Time.timeScale = 0;
+           }
     }
 }

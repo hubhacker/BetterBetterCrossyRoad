@@ -21,12 +21,12 @@ public class lambdaSpawner : MonoBehaviour
             if(randomIndex == 0){
                 zSpawnPositionsLeft.Add(zSpawnPositions[i]);
                 Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositions[i]);
-                Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
+                Destroy(Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity), 15f);
             }
             else{
                 zSpawnPositionsRight.Add(zSpawnPositions[i]);
                 Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositions[i]);
-                Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
+                Destroy(Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity), 15f);
             }
         }
         StartCoroutine(SpawnLambdas());
@@ -39,11 +39,11 @@ public class lambdaSpawner : MonoBehaviour
             int randomIndex = Random.Range(0, 2);
             if(randomIndex == 0){
                 Vector3 spawnPositionLeft = new Vector3(-10, 1, zSpawnPositionsLeft[Random.Range(0, zSpawnPositionsLeft.Count)]);
-                Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity);
+                Destroy(Instantiate(leftLambdaPrefab, spawnPositionLeft, Quaternion.identity), 15f);
             }
             else{
                 Vector3 spawnPositionRight = new Vector3(10, 1, zSpawnPositionsRight[Random.Range(0, zSpawnPositionsRight.Count)]);
-                Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity);
+                Destroy(Instantiate(rightLambdaPrefab, spawnPositionRight, Quaternion.identity), 15f);
             }
 
 

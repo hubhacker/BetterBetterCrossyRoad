@@ -8,9 +8,11 @@ public class WorldGenerator : MonoBehaviour
     public GameObject[] treePrefabs; // Assign in Inspector with 5 tree prefabs
     public GameObject[] worldPrefabs; // Assign your tile prefabs in the Inspector
     public Transform chicken;         // Assign the Chicken GameObject
+    public GameObject log;
     public float spawnOffset = 15f;   // How far ahead of the chicken to spawn tiles
     // public float treeSpacingRadius = 1.5f; // Minimum spacing between trees
-
+    
+    private bool lastWater = false;
     private int lastGeneratedZ = int.MinValue;
 
     // Update is called once per frame
@@ -22,8 +24,30 @@ public class WorldGenerator : MonoBehaviour
         {
             lastGeneratedZ = currentZ;
 
-            GameObject prefab = worldPrefabs[Random.Range(0, worldPrefabs.Length)];
+            GameObject prefab; 
 
+            if (lastWater == true) {
+                prefab = worldPrefabs[Random.Range(0, worldPrefabs.Length - 1)];
+                lastWater = false;
+
+            }
+            else
+            {
+                prefab = worldPrefabs[Random.Range(0, worldPrefabs.Length)];
+            }
+
+            if (prefab.tag == "water")
+            {
+                lastWater = true;
+                for (int i = 0; i < 4; i++)
+                {
+                    Vector3 logSpawnPosition = new Vector3(Random.Range(-20, 20), (float)0.3258734, currentZ + spawnOffset);
+                    Instantiate(log, logSpawnPosition, Quaternion.Euler(90, 180, 0));
+                    Debug.Log("spawned log");
+                }
+            }
+
+            // actually instantiate strip
             Vector3 spawnPosition = new Vector3(0, 0, currentZ + spawnOffset);
             Instantiate(prefab, spawnPosition, Quaternion.identity);
             if (prefab.name == "RoadStrip")
