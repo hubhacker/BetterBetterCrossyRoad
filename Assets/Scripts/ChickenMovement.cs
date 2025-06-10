@@ -77,7 +77,6 @@ public class ChickenMovement : MonoBehaviour
         {
             Debug.Log("collided with lambda");
             // game ends
-            Destroy(_chicken.gameObject);
             Time.timeScale = 0;
         }
 
@@ -85,7 +84,6 @@ public class ChickenMovement : MonoBehaviour
            {
                Debug.Log("touched water layer - chicken drowns. game over");
                // game ends
-                Destroy(_chicken.gameObject);
                 Time.timeScale = 0;
            }
     }
