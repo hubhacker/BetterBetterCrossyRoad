@@ -5,13 +5,13 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
 
-    public GameObject[] treePrefabs; // Assign in Inspector with 5 tree prefabs
-    public GameObject[] worldPrefabs; // Assign your tile prefabs in the Inspector
-    public Transform chicken;         // Assign the Chicken GameObject
+    public GameObject[] treePrefabs;
+    public GameObject[] worldPrefabs; 
+    public Transform chicken; 
     public GameObject log;
-    public float spawnOffset = 15f;   // How far ahead of the chicken to spawn tiles
+    public float spawnOffset = 16f;
     public int stripsSpawned = 0;
-    // public float treeSpacingRadius = 1.5f; // Minimum spacing between trees
+    // public float treeSpacingRadius = 1.5f;
     
     private bool lastWater = false;
     private int lastGeneratedZ = int.MinValue;
@@ -44,7 +44,7 @@ public class WorldGenerator : MonoBehaviour
                 {
                     Vector3 logSpawnPosition = new Vector3(Random.Range(-20, 20), (float)0.3258734, currentZ + spawnOffset);
                     Instantiate(log, logSpawnPosition, Quaternion.Euler(90, 180, 0));
-                    Debug.Log("spawned log");
+                    // Debug.Log("spawned log");
                 }
             }
 
@@ -67,10 +67,12 @@ public class WorldGenerator : MonoBehaviour
 
             if (prefab.name == "GrassStrip")
             {
-                for (int i = 0; i < 4; i++){
+                for (int i = 0; i < 4; i++)
+                {
                     GameObject randomTree = treePrefabs[Random.Range(0, treePrefabs.Length)];
-                    Vector3 treeSpawnPosition = new Vector3(Random.Range(-20, 20), 0, currentZ + spawnOffset);
+                    Vector3 treeSpawnPosition = new Vector3(Mathf.RoundToInt(Random.Range(-20, 20)), 0, currentZ + spawnOffset);
                     Instantiate(randomTree, treeSpawnPosition, Quaternion.identity);
+                    Debug.Log("spawned tree at " + treeSpawnPosition);
 
                     // Collider[] hitColliders = Physics.OverlapSphere(treeSpawnPosition, treeSpacingRadius);
                     //     if (hitColliders.Length == 0)
