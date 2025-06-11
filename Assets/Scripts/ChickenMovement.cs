@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class ChickenMovement : MonoBehaviour
 {
@@ -77,14 +79,16 @@ public class ChickenMovement : MonoBehaviour
         {
             Debug.Log("collided with lambda");
             // game ends
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
+            SceneManager.LoadScene(2);
         }
 
         if (collider.gameObject.layer == LayerMask.NameToLayer("Water"))
            {
                Debug.Log("touched water layer - chicken drowns. game over");
                // game ends
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
+                SceneManager.LoadScene(2);
            }
     }
     public float getChickenZPosition()
