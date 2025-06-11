@@ -8,6 +8,6 @@ public class GameOver : MonoBehaviour
     // Called by "Play Again?" button in GameOver scene
     public void PlayAgain()
     {
-        SceneManager.LoadScene(0); // Use scene name or index (0 if MainMenu is first)
+        SceneManager.LoadScene(0);
     }
 }
