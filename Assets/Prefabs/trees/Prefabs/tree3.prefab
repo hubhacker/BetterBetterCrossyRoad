@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3515307254307441510}
   - component: {fileID: 2184492476447769094}
   - component: {fileID: 402718886865552751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trunk.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 694745300712487991}
   - component: {fileID: 1416364250614202632}
   - component: {fileID: 7318281579792031629}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leaves.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,9 +176,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7397426551228221330}
   - component: {fileID: 124339754729497404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree3
-  m_TagString: Untagged
+  m_TagString: trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
