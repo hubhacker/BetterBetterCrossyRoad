@@ -67,7 +67,7 @@ public class ChickenMovement : MonoBehaviour
             score++;
             DisplayScore displayScore = FindObjectOfType<DisplayScore>();
             displayScore.UpdateScore(maxZdistance);
-            Debug.Log("Score: " + score);
+            // Debug.Log("Score: " + score);
         }
     }
 

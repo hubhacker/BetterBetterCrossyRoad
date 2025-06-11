@@ -20,22 +20,22 @@ public class PlayerInput : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 chicken.Jump(Vector3.forward);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && transform.position.z > 0)
             {
                 chicken.Jump(Vector3.back);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && transform.position.x > -19)
             {
                 chicken.Jump(Vector3.left);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && transform.position.x < 19)
             {
                 chicken.Jump(Vector3.right);
                 isGrounded = false;

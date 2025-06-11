@@ -5,8 +5,8 @@ using UnityEngine;
 public class treeSpawner : MonoBehaviour
 {
 
-    public GameObject[] treePrefabs; // Assign in Inspector with 5 tree prefabs
-    public float spawnInterval = 1f; // Time between spawns
+    public GameObject[] treePrefabs;
+    public float spawnInterval = 1f;
     public int[] zSpawnPositions = {1, 2, 3, 7, 10, 13, 14};
 
     private void Start()
