@@ -25,7 +25,7 @@ public class PlayerInput : MonoBehaviour
                 chicken.Jump(Vector3.forward);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position.z > 0)
             {
                 chicken.Jump(Vector3.back);
                 isGrounded = false;
