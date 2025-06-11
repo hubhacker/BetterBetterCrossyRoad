@@ -1319,11 +1319,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 761852222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbf4f3b1d46e49b7ab2cfd530aa07e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c1966a7f475b42d28fdd655b1ac2804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 621034258}
-  smoothSpeed: 5
+  speed: 1
+  chicken: {fileID: 1888433337}
 --- !u!4 &774730407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4534873065144393104, guid: 345747723bc0a4ad7b3038c662833550, type: 3}

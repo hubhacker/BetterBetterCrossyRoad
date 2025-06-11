@@ -87,4 +87,8 @@ public class ChickenMovement : MonoBehaviour
                 Time.timeScale = 0;
            }
     }
+    public float getChickenZPosition()
+    {
+        return transform.position.z;
+    }
 }

@@ -24,7 +24,7 @@ public class DeathHandler : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         // Stop background music
         if (backgroundMusic != null && backgroundMusic.isPlaying)
