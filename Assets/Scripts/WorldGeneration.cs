@@ -9,7 +9,7 @@ public class WorldGenerator : MonoBehaviour
     public GameObject[] worldPrefabs; 
     public Transform chicken; 
     public GameObject log;
-    public float spawnOffset = 16f;
+    public float spawnOffset = 21f;
     public int stripsSpawned = 0;
     // public float treeSpacingRadius = 1.5f;
     
@@ -42,7 +42,7 @@ public class WorldGenerator : MonoBehaviour
                 lastWater = true;
                 for (int i = 0; i < 4; i++)
                 {
-                    Vector3 logSpawnPosition = new Vector3(Random.Range(-20, 20), (float)0.3258734, currentZ + spawnOffset);
+                    Vector3 logSpawnPosition = new Vector3(Random.Range(-19, 20), (float)0.3258734, currentZ + spawnOffset);
                     Instantiate(log, logSpawnPosition, Quaternion.Euler(90, 180, 0));
                     // Debug.Log("spawned log");
                 }
@@ -70,7 +70,7 @@ public class WorldGenerator : MonoBehaviour
                 for (int i = 0; i < 4; i++)
                 {
                     GameObject randomTree = treePrefabs[Random.Range(0, treePrefabs.Length)];
-                    Vector3 treeSpawnPosition = new Vector3(Mathf.RoundToInt(Random.Range(-20, 20)), 0, currentZ + spawnOffset);
+                    Vector3 treeSpawnPosition = new Vector3(Mathf.RoundToInt(Random.Range(-19, 20)), 0, currentZ + spawnOffset);
                     Instantiate(randomTree, treeSpawnPosition, Quaternion.identity);
                     Debug.Log("spawned tree at " + treeSpawnPosition);
 

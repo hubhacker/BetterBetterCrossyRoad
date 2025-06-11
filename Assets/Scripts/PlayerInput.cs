@@ -30,12 +30,12 @@ public class PlayerInput : MonoBehaviour
                 chicken.Jump(Vector3.back);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && transform.position.x > -19)
             {
                 chicken.Jump(Vector3.left);
                 isGrounded = false;
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && transform.position.x < 19)
             {
                 chicken.Jump(Vector3.right);
                 isGrounded = false;
