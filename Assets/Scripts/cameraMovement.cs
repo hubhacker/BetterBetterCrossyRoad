@@ -12,10 +12,14 @@ public class cameraMovement : MonoBehaviour
 
         Vector3 desiredPosition = new Vector3(chicken.position.x + (float)0.5, transform.position.y, transform.position.z); // + offset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-        
+
         if(transform.position.z > chicken.position.z){
             Debug.Log("Camera overtook chicken");
             Time.timeScale = 0;
+        }
+        if(chicken.position.z > transform.position.z+3.8f){
+            desiredPosition = new Vector3(transform.position.x, transform.position.y, chicken.position.z - (float)3.8); // + offset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         }
     }
 }
