@@ -2427,6 +2427,7 @@ MonoBehaviour:
   - {fileID: 1601009122078648933, guid: 345747723bc0a4ad7b3038c662833550, type: 3}
   - {fileID: 1601009122078648933, guid: ca40e76e8dce043fda5378f8ed968a4e, type: 3}
   boundaryPrefab: {fileID: 8629155361520919953, guid: f259a79b85ec14f128c8c044ba255cd1, type: 3}
+  grassPrefab: {fileID: 4987379548551745728, guid: 6c129e3a477ca433ba05add50ab67dea, type: 3}
   chicken: {fileID: 621034258}
   log: {fileID: 1601009122078648933, guid: 38c8b6bb1f8f54026957a3c34e31553e, type: 3}
   spawnOffset: 15
