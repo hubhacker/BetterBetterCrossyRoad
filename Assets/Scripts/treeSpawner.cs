@@ -29,7 +29,8 @@ public class treeSpawner : MonoBehaviour
             Vector3 spawnPosition = (Random.value < 0.5f) ?
                 new Vector3(-10, 0, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]) :
                 new Vector3(10, 0, zSpawnPositions[Random.Range(0, zSpawnPositions.Length)]);
-            Instantiate(randomTree, spawnPosition, Quaternion.identity);
+            GameObject treeInstance = Instantiate(randomTree, spawnPosition, Quaternion.identity);
+            treeInstance.layer = LayerMask.NameToLayer("tree");
 
             yield return new WaitForSeconds(spawnInterval);
         }

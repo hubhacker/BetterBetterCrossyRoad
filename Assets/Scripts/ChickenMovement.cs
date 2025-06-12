@@ -80,7 +80,9 @@ public class ChickenMovement : MonoBehaviour
             Debug.Log("collided with lambda");
             // game ends
             //Time.timeScale = 0;
-            SceneManager.LoadScene(2);
+            //SceneManager.LoadScene(2);
+
+            StartCoroutine(DelayedGameOver());
         }
 
         if (collider.gameObject.layer == LayerMask.NameToLayer("Water"))
@@ -88,11 +90,29 @@ public class ChickenMovement : MonoBehaviour
                Debug.Log("touched water layer - chicken drowns. game over");
                // game ends
                 //Time.timeScale = 0;
-                SceneManager.LoadScene(2);
+                //SceneManager.LoadScene(2);
+
+                StartCoroutine(DelayedGameOver());
            }
     }
     public float getChickenZPosition()
     {
         return transform.position.z;
     }
+
+
+    IEnumerator DelayedGameOver()
+    {
+        // Optional: freeze movement
+        if (TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
+        yield return new WaitForSeconds(0.2f); 
+        SceneManager.LoadScene("GameOver");
+    }
+
+
 }
