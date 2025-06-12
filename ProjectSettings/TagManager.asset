@@ -8,6 +8,7 @@ TagManager:
   - obstacle
   - water
   - trees
+  - Music
   layers:
   - Default
   - TransparentFX
