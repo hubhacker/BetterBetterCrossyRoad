@@ -89,7 +89,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
