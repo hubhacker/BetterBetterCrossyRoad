@@ -134,7 +134,7 @@ public class ChickenMovement : MonoBehaviour
             audioSource.Play();
         }
 
-        yield return new WaitForSeconds(1.5f); // wait for buzzer to play
+        yield return new WaitForSeconds(1f); // wait for buzzer to play
         SceneManager.LoadScene("GameOver");
     }
 
