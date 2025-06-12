@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; 
+
+
 
 
 public class ChickenMovement : MonoBehaviour
@@ -13,6 +15,8 @@ public class ChickenMovement : MonoBehaviour
     private int maxZdistance = 0;
     public DisplayScore displayScore;
     // private bool isInWater = false;
+    private AudioSource audioSource;
+
 
     [SerializeField]
     GameObject _chicken;
@@ -20,6 +24,8 @@ public class ChickenMovement : MonoBehaviour
     private void Start()
     {
         SnapToGrid();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
 
@@ -110,7 +116,25 @@ public class ChickenMovement : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        yield return new WaitForSeconds(0.2f); 
+
+        // Stop background music
+        GameObject musicObj = GameObject.FindGameObjectWithTag("Music");
+        if (musicObj != null)
+        {
+            AudioSource musicSource = musicObj.GetComponent<AudioSource>();
+            if (musicSource != null)
+            {
+                musicSource.Stop();
+            }
+        }
+
+        // Play buzzer sound
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
+        yield return new WaitForSeconds(1.5f); // wait for buzzer to play
         SceneManager.LoadScene("GameOver");
     }
 
