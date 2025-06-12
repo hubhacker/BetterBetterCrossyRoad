@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class cameraMovement : MonoBehaviour
 {
     public float speed = 5f;
@@ -15,11 +16,23 @@ public class cameraMovement : MonoBehaviour
 
         if(transform.position.z > chicken.position.z){
             Debug.Log("Camera overtook chicken");
-            Time.timeScale = 0;
+            StartCoroutine(DelayedGameOver());
         }
         if(chicken.position.z > transform.position.z+3.8f){
             desiredPosition = new Vector3(transform.position.x, transform.position.y, chicken.position.z - (float)3.8); // + offset;
             transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         }
+     IEnumerator DelayedGameOver()
+    {
+        // Optional: freeze movement
+        if (TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
+        yield return new WaitForSeconds(0.2f); 
+        SceneManager.LoadScene("GameOver");
+    }
     }
 }
